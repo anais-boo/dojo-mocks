@@ -2,24 +2,30 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import App from "./App";
 import axios from "axios";
-import mockAxios from "jest-mock-axios";
 
 describe("App component", () => {
-  afterEach(() => {
-    mockAxios.reset();
+  let axiosSpy: jest.SpyInstance;
+
+  beforeEach(() => {
+    axiosSpy = jest.spyOn(axios, "get").mockClear();
+  });
+
+  afterAll(() => {
+    axiosSpy.mockRestore();
   });
 
   describe("Story view", () => {
     it("contains a title 'Top Stories from Hacker News'", () => {
-      //build
+      // Build
       render(<App />);
-      //check
+
+      // Check
       const headingElement = screen.getByText("Top Stories from Hacker News");
       expect(headingElement).toBeInTheDocument();
     });
 
     it("should display the story name", async () => {
-      // build
+      // Build
       const mockStoryIds = [1, 2];
       const mockStoryDetails = [
         { title: "Story 1", url: "http://example.com/story1", score: 100 },
@@ -27,52 +33,50 @@ describe("App component", () => {
       ];
 
       // Mock the get function of axios to return the mockStoryIds response
-      jest.spyOn(axios, "get").mockResolvedValueOnce({ data: mockStoryIds });
+      axiosSpy.mockResolvedValueOnce({ data: mockStoryIds });
 
       // Mock the get function of axios to return the mockStoryDetails responses
       mockStoryIds.forEach((id, index) => {
-        jest
-          .spyOn(axios, "get")
-          .mockResolvedValueOnce({ data: mockStoryDetails[index] });
+        axiosSpy.mockResolvedValueOnce({ data: mockStoryDetails[index] });
       });
 
       render(<App />);
 
-      // check
+      // Check
       await screen.findByText(/Story 1/i);
       await screen.findByText(/Story 2/i);
     });
 
     it("should navigate to the story link when clicked", () => {
-      // build
-      // operate
-      // check
+      // Build
+      // Operate
+      // Check
     });
 
     it("should write a 🔥 emoji besides the title if the story has a score higher than 100", () => {
-      // build
-      // operate
-      // check
+      // Build
+      // Operate
+      // Check
     });
 
     it("should not write a 🔥 emoji besides the title if the story has a score lower than 100", () => {
-      // build
-      // operate
-      // check
+      // Build
+      // Operate
+      // Check
     });
   });
 
   describe("Data fetching", () => {
     it("should fetch the top Hacker News stories with details", () => {
-      // build
-      // operate
-      // check
+      // Build
+      // Operate
+      // Check
     });
 
     it("should limit to 10 stories", () => {
-      // build
-      // operate
-      // check
+      // Build
+      // Operate
+      // Check
     });
   });
 });
