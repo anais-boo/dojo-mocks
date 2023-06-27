@@ -63,9 +63,16 @@ describe("App component", () => {
   });
 
   describe("Data fetching", () => {
-    // better:
-    it("should fetch the top Hacker News stories with details", () => {});
+    it("should fetch the top Hacker News stories with details", () => {
+      // build
+      // operate
+      // check
+    });
 
-    it("should limit to 10 stories", () => {});
+    it("should limit to 10 stories", () => {
+      // build
+      // operate
+      // check
+    });
   });
 });

@@ -2,7 +2,25 @@
 
 This is a React app that displays the top stories from Hacker News. It fetches the story details from the Hacker News API and renders them in a list.
 
-# Getting Started with Create React App
+# Start the kata
+
+As a new developer on this application, your task is to complete the test coverage and ensure the app functions correctly. 
+
+The previous developer has already started implementing some tests, but you will need to finish the job and add any additional tests as necessary.
+
+Feel free to refactor the app as needed to improve its testability. Consider how you can structure the components and codebase to make it easier to write tests and ensure better test coverage.
+
+## Clues
+
+To help you with the task, consider the following:
+
+What is the primary functionality of this app? Create a schema or outline of how the app should work to guide your testing efforts.
+
+How can you refactor the app to improve its testability? Consider breaking down complex components, separating concerns, and using mocking or dependency injection to isolate dependencies for easier testing.
+
+Your goal is to achieve comprehensive test coverage and ensure that the app functions correctly. Happy testing!
+
+##  Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
