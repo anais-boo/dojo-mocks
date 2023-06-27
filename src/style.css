@@ -1,0 +1,26 @@
+/* App.css */
+
+body {
+  background-color: #ffcdfd; /* light pink */
+  font-family: Arial, sans-serif;
+}
+
+.App {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.story {
+  background-color: #ffe4f6; /* slightly darker pink */
+  margin-bottom: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.story a {
+  color: #ff69b4; /* hot pink */
+  text-decoration: none;
+}
