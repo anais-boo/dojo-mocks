@@ -30,8 +30,8 @@ describe("App component", () => {
       render(<App />);
 
       // Check
-      await screen.findByText(/Story 1/i);
-      await screen.findByText(/Story 2/i);
+      expect(await screen.findByText(/Story 1/i)).toBeInTheDocument();
+      expect(await screen.findByText(/Story 2/i)).toBeInTheDocument();
     });
   });
 });
