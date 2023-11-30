@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./style.css";
 
+export const storyIds = [38464057,38470764]
+
 interface Story {
   title: string;
   url: string;
@@ -17,24 +19,18 @@ function App() {
 
   const getTopStories = async () => {
     try {
-      const res = await axios.get<number[]>(
-        "https://hacker-news.firebaseio.com/v0/topstories.json"
+
+      const storyPromises = storyIds.map((id) =>
+        axios.get<Story>(
+          `https://hacker-news.firebaseio.com/v0/item/${id}.json`
+        )
       );
 
-      if (res && res.data) {
-        const storyIds = res.data.slice(0, 10); // Get the top 10 story IDs
+      Promise.all(storyPromises).then((response) => {
+        const storyData = response.map((r) => r.data);
+        setStories(storyData);
+      });
 
-        const storyPromises = storyIds.map((id) =>
-          axios.get<Story>(
-            `https://hacker-news.firebaseio.com/v0/item/${id}.json`
-          )
-        );
-
-        Promise.all(storyPromises).then((response) => {
-          const storyData = response.map((r) => r.data);
-          setStories(storyData);
-        });
-      }
     } catch (error) {
       console.error("Error fetching top stories:", error);
     }
